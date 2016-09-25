@@ -19,6 +19,8 @@
   - ESLint
 - Express server
   - Hello world
+  - Helmet middleware
+  - Users API (stubbed)
 - Unit testing
 
 ### Gulp tasks
@@ -31,6 +33,7 @@
 
 ### Dependencies
 - express
+- helmet
 
 ### Devdependencies
 - chai
