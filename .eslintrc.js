@@ -4,6 +4,9 @@ module.exports = {
   parserOptions: {
     sourceType: 'script'
   },
+  env: {
+      mocha: true
+    },
   rules: {
     /**
      * Errors

@@ -7,7 +7,9 @@ const Config = {
   paths: {
     server: {
       base: './src/server',
-      jsFiles: './src/server/**/*.js'
+      jsFiles: './src/server/**/*.js',
+      specs: './src/server/**/*.spec.js',
+      coverage: './src/server/**/!(*spec.js)'
     }
   }
 };

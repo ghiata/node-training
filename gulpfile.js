@@ -13,6 +13,37 @@ gulp.task('lint', () => {
     .pipe(plugins.eslint.format());
 });
 
+// Run the unit tests
+gulp.task('unit-test', () => {
+  gulp.src(paths.server.specs)
+    .pipe(plugins.mocha({
+      reporter: 'progress'
+    }));
+});
+
+// Initialize the unit test coverage
+gulp.task('pre-unit-test-report', () => {
+  gulp.src(paths.server.coverage)
+    // FIXME: Coverage is giving 0%
+    // Covering files
+    .pipe(plugins.istanbul({
+      includeUntested: true
+    }))
+    // Force 'require' to return covered files
+    .pipe(plugins.istanbul.hookRequire());
+});
+
+// Report the unit test coverage
+gulp.task('unit-test-report', ['pre-unit-test-report'], () => {
+  gulp.src(paths.server.specs)
+    // Unit test the files
+    .pipe(plugins.mocha())
+    // Create the report
+    .pipe(plugins.istanbul.writeReports({
+      dir: './tests/coverage'
+    }));
+});
+
 // Start the server
 gulp.task('serve', ['lint'], () => {
   process.env.port = config.env.port;
@@ -23,7 +54,7 @@ gulp.task('serve', ['lint'], () => {
       port: config.env.port
     },
     watch: paths.server.base,
-    tasks: 'lint'
+    tasks: ['lint', 'unit-test']
   };
 
   return plugins.nodemon(options);
