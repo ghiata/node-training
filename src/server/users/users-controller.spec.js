@@ -1,9 +1,7 @@
 'use strict';
 
-const expect = require('chai').expect;
 const sinon = require('sinon');
 const usersController = require('./users-controller');
-const usersData = require('./users-data.js');
 
 /**
  * Describe usersController
@@ -14,7 +12,8 @@ describe('usersController', () => {
 
   beforeEach(() => {
     req = {
-      params: {}
+      params: {},
+      body: {}
     };
 
     res = {
@@ -25,60 +24,226 @@ describe('usersController', () => {
   });
 
   /**
-   * getUsers
+   * getUsers method
    */
   describe('getUsers method', () => {
     beforeEach(() => {
       usersController.getUsers(req, res);
     });
 
-    it('should respond with a status of 200', () => {
-      expect(res.status.calledWith(200)).to.equal(true);
+    /**
+     * db.getUsers() resolves
+     */
+    describe('db.getUsers() resolves', () => {
+      it('should respond with a status of 200', () => {
+        // add test
+      });
+
+      it('should respond with a JSON object of the users', () => {
+        // add test
+      });
     });
 
-    it('should respond with a JSON object of the users', () => {
-      expect(res.json.calledWith(usersData)).to.equal(true);
+    /**
+     * db.getUsers() rejects
+     */
+    describe('db.getUsers() rejects', () => {
+      it('should respond with a status of 500', () => {
+        // add test
+      });
+
+      it('should respond with the error', () => {
+        // add test
+      });
     });
   });
 
   /**
-   * getUser
+   * createUser method
    */
-  describe('getUser method', () => {
+  describe('createUser method', () => {
+    beforeEach(() => {
+      usersController.createUser(req, res);
+    });
+
     /**
-     * userId exists
+     * db.createUser() resolves
      */
-    describe('userId exists', () => {
-      beforeEach(() => {
-        req.params.userId = '1';
-        usersController.getUser(req, res);
+    describe('db.createUser() resolves', () => {
+      it('should respond with the location of the new user', () => {
+        // add test
       });
 
-      it('should respond with a status of 200', () => {
-        expect(res.status.calledWith(200)).to.equal(true);
-      });
-
-      it('should respond with a JSON object of the user', () => {
-        const user = usersData.users.find(element => element.id === req.params.userId);
-        expect(res.json.calledWith(user)).to.equal(true);
+      it('should respond with a status of 201', () => {
+        // add test
       });
     });
 
     /**
-     * userId does not exist
+     * db.createUser() rejects
      */
-    describe('userId does not exist', () => {
-      beforeEach(() => {
-        req.params.userId = 'mockId';
-        usersController.getUser(req, res);
+    describe('db.createUser() rejects', () => {
+      it('should respond with a status of 500', () => {
+        // add test
       });
 
-      it('should respond with a status of 404', () => {
-        expect(res.status.calledWith(404)).to.equal(true);
+      it('should respond with the error', () => {
+        // add test
+      });
+    });
+  });
+
+  /**
+   * getUser method
+   */
+  describe('getUser method', () => {
+    beforeEach(() => {
+      usersController.getUser(req, res);
+    });
+
+    /**
+     * db.getUser(userId) resolves
+     */
+    describe('db.getUser(userId) resolves', () => {
+      /**
+       * userId exists
+       */
+      describe('userId exists', () => {
+        beforeEach(() => {
+          // add test
+        });
+
+        it('should respond with a status of 200', () => {
+          // add test
+        });
+
+        it('should respond with a JSON object of the user', () => {
+          // add test
+        });
       });
 
-      it('should respond by sending a error message', () => {
-        expect(res.send.calledWith(`Could not find user with id ${req.params.userId}`)).to.equal(true);
+      /**
+       * userId does not exist
+       */
+      describe('userId does not exist', () => {
+        beforeEach(() => {
+          // add test
+        });
+
+        it('should respond with a status of 404', () => {
+          // add test
+        });
+
+        it('should respond by sending a error message', () => {
+          // add test
+        });
+      });
+    });
+
+    /**
+     * db.getUser(userId) rejects
+     */
+    describe('db.getUser(userId) resolves', () => {
+      it('should respond with a status of 500', () => {
+        // add test
+      });
+
+      it('should respond with the error', () => {
+        // add test
+      });
+    });
+  });
+
+  /**
+   * updateUser method
+   */
+  describe('updateUser method', () => {
+    beforeEach(() => {
+      usersController.updateUser(req, res);
+    });
+
+    /**
+     * db.updateUser(userId, firstName, lastName) resolves
+     */
+    describe('db.updateUser(userId, firstName, lastName) resolves', () => {
+      /**
+       * rowCount > 0
+       */
+      describe('rowCount > 0', () => {
+        it('should respond with a status of 200', () => {
+          // add test
+        });
+      });
+
+      /**
+       * rowCount === 0
+       */
+      describe('rowCount === 0', () => {
+        it('should respond with a status of 404', () => {
+          // add test
+        });
+
+        it('should respond by sending a error message', () => {
+          // add test
+        });
+      });
+    });
+
+    /**
+     * db.updateUser(userId, firstName, lastName) rejects
+     */
+    describe('db.updateUser(userId, firstName, lastName) rejects', () => {
+      it('should respond with a status of 500', () => {
+        // add test
+      });
+
+      it('should respond with the error', () => {
+        // add test
+      });
+    });
+  });
+
+  /**
+   * deleteUser method
+   */
+  describe('deleteUser method', () => {
+    beforeEach(() => {
+      usersController.deleteUser(req, res);
+    });
+
+    /**
+     * db.deleteUser(userId) resolves
+     */
+    describe('db.deleteUser(userId) resolves', () => {
+      /**
+       * rowCount > 0
+       */
+      describe('rowCount > 0', () => {
+        it('should respond with a status of 204', () => {
+          // add test
+        });
+      });
+
+      /**
+       * rowCount === 0
+       */
+      describe('rowCount === 0', () => {
+        it('should respond with a status of 410', () => {
+          // add test
+        });
+      });
+    });
+
+    /**
+     * db.deleteUser(userId) rejects
+     */
+    describe('db.deleteUser(userId) rejects', () => {
+      it('should respond with a status of 500', () => {
+        // add test
+      });
+
+      it('should respond with the error', () => {
+        // add test
       });
     });
   });

@@ -20,7 +20,10 @@
 - Express server
   - Hello world
   - Helmet middleware
-  - Users API (stubbed)
+  - Users API
+  - PostgreSQL Database
+  - Body-parser middleware
+  - CRUD operations
 - Unit testing
 
 ### Gulp tasks
@@ -32,8 +35,10 @@
 - unit-test-report (Mocha + Istanbul)
 
 ### Dependencies
+- body-parser
 - express
 - helmet
+- pg-promise
 
 ### Devdependencies
 - chai

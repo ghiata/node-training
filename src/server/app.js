@@ -2,6 +2,7 @@
 
 const express = require('express');
 const helmet = require('helmet');
+const bodyParser = require('body-parser');
 const helloWorld = require('./hello-world');
 const users = require('./users');
 
@@ -11,6 +12,7 @@ const port = process.env.port || 3000;
 // Create a new express server
 const app = express();
 app.use(helmet());
+app.use(bodyParser.json());
 
 // Send a response to the index
 app.get('/', helloWorld.helloWorld);
