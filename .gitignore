@@ -39,4 +39,5 @@ Thumbs.db
 # Generated folders #
 #####################
 node_modules/
+bower_components/
 tests/

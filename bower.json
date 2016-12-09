@@ -1,0 +1,21 @@
+{
+  "name": "Node-training",
+  "description": "An app with an extensive Express setup",
+  "main": "",
+  "authors": [
+    "Jerre van Veluw <jerrevanveluw@users.noreply.github.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/carelcoenraad/node-training",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.9"
+  }
+}

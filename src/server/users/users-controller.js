@@ -8,7 +8,7 @@ const usersController = {
    */
   getUsers(req, res) {
     res.status(200);
-    res.json(usersData);
+    res.json({ data: usersData });
   },
 
   /**

@@ -1,28 +1,33 @@
 'use strict';
 
-const usersData = {
-  users: [
-    {
-      id: '1',
-      firstName: 'Eric',
-      lastName: 'Cartman'
-    },
-    {
-      id: '2',
-      firstName: 'Kenny',
-      lastName: 'McCormick'
-    },
-    {
-      id: '3',
-      firstName: 'Kyle',
-      lastName: 'Broflovski'
-    },
-    {
-      id: '4',
-      firstName: 'Stan',
-      lastName: 'Marsh'
-    }
-  ]
-};
+const usersData = [{
+  id: '1',
+  type: 'users',
+  attributes: {
+    firstName: 'Eric',
+    lastName: 'Cartman'
+  }
+}, {
+  id: '2',
+  type: 'users',
+  attributes: {
+    firstName: 'Kenny',
+    lastName: 'McCormick'
+  }
+}, {
+  id: '3',
+  type: 'users',
+  attributes: {
+    firstName: 'Kyle',
+    lastName: 'Broflovski'
+  }
+}, {
+  id: '4',
+  type: 'users',
+  attributes: {
+    firstName: 'Stan',
+    lastName: 'Marsh'
+  }
+}];
 
 module.exports = usersData;
