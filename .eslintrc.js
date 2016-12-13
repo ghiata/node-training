@@ -43,6 +43,10 @@ module.exports = {
      * Style
      * Extends https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/style.js
      */
+    // Rule: enforce consistent linebreak style
+    // Docs: http://eslint.org/docs/rules/linebreak-style
+    // Airbnb: 'linebreak-style': ['error', 'unix']
+    'linebreak-style': [0, 'unix'],
     // Rule: require or disallow a space before function opening parenthesis
     // Docs: http://eslint.org/docs/rules/space-before-function-paren
     // Airbnb: 'space-before-function-paren': [2, { 'anonymous': 'always', 'named': 'never' }]
