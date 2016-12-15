@@ -1,9 +1,9 @@
 (() => {
 
-	'use strict';
+  'use strict';
 
-	angular.module('my-app', [
-		'login'
-	]);
+  angular.module('main', [
+    'login'
+  ]);
 
 })();

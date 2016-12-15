@@ -6,7 +6,7 @@ const api = require('./api');
 
 const passport = require('passport');
 // const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
-const LocalStrategy = require('passport-local').Strategy;
+// const LocalStrategy = require('passport-local').Strategy;
 
 // Configure the server
 const port = process.env.port || 3000;
@@ -17,11 +17,9 @@ app.use(helmet());
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(Account.authenticate()));
-
 // Send a response to the index
 app.use('/', express.static('src/client'));
-app.use('/lib', express.static('bower_components'));
+app.use('/lib', express.static('lib'));
 
 // API routes
 app.use('/api', api);

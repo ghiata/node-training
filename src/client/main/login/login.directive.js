@@ -1,20 +1,20 @@
 (() => {
 
-	'use strict'
+  'use strict'
 
-	angular
-		.module('login')
-		.directive('login', login);
+  angular
+    .module('login')
+    .directive('login', login);
 
-	login.$inject = [];
+  login.$inject = [];
 
-	function login() {
-		return {
-			restrict: 'E',
-			templateUrl: 'main/login/login.html',
-			controller: 'LoginController',
-			controllerAs: 'vm'
-		};
-	}
+  function login() {
+    return {
+      restrict: 'E',
+      templateUrl: 'main/login/login.html',
+      controller: 'LoginController',
+      controllerAs: 'vm'
+    };
+  }
 
 })();

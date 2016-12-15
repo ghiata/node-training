@@ -8,14 +8,32 @@ const paths = config.paths;
 
 // Lint all JavaScript files
 gulp.task('lint', () => {
-  gulp.src(['./gulpfile.js', './config', paths.server.jsFiles])
+  return gulp.src(['./gulpfile.js', './config', paths.server.jsFiles])
     .pipe(plugins.eslint())
     .pipe(plugins.eslint.format());
 });
 
+// wire up all js files
+gulp.task('bower', () => {
+  return gulp.src([paths.client.index])
+    .pipe(plugins.wiredep({
+        ignorePath: '../../',
+    }))
+    .pipe(gulp.dest(paths.client.base));
+});
+
+gulp.task('inject', ['bower'], () => {
+  var target = gulp.src([paths.client.index]);
+  var sources = gulp.src([paths.client.modules, paths.client.directives, paths.client.controllers, paths.client.factories], {read: false});
+
+  return target
+    .pipe(plugins.inject(sources, {ignorePath: 'src/client'}))
+    .pipe(gulp.dest('./src/client'));
+});
+
 // Run the unit tests
 gulp.task('unit-test', () => {
-  gulp.src(paths.server.specs)
+  return gulp.src(paths.server.specs)
     .pipe(plugins.mocha({
       reporter: 'progress'
     }));
@@ -23,7 +41,7 @@ gulp.task('unit-test', () => {
 
 // Initialize the unit test coverage
 gulp.task('pre-unit-test-report', () => {
-  gulp.src(paths.server.coverage)
+  return gulp.src(paths.server.coverage)
     // FIXME: Coverage is giving 0%
     // Covering files
     .pipe(plugins.istanbul({
@@ -35,7 +53,7 @@ gulp.task('pre-unit-test-report', () => {
 
 // Report the unit test coverage
 gulp.task('unit-test-report', ['pre-unit-test-report'], () => {
-  gulp.src(paths.server.specs)
+  return gulp.src(paths.server.specs)
     // Unit test the files
     .pipe(plugins.mocha())
     // Create the report
@@ -45,7 +63,7 @@ gulp.task('unit-test-report', ['pre-unit-test-report'], () => {
 });
 
 // Start the server
-gulp.task('serve', ['lint'], () => {
+gulp.task('serve', ['lint', 'inject'], () => {
   process.env.port = config.env.port;
 
   const options = {

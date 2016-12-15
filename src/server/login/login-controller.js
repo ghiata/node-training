@@ -10,8 +10,8 @@ const loginController = {
   },
 
   postlogin(req, res) {
-  	res.status(200);
-  	res.send('posted');
+    res.status(200);
+    res.send('posted');
   }
 
 };

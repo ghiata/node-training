@@ -1,17 +1,17 @@
 (() => {
-	'use strict';
+  'use strict';
 
-	angular
-		.module('my-app')
-		.directive('main', main);
+  angular
+    .module('my-app')
+    .directive('main', main);
 
-	main.$inject = [];
+  main.$inject = [];
 
-	function main() {
-		return {
-			restrict: 'E',
-			templateUrl: 'main/main.html' 
-		};
-	}
+  function main() {
+    return {
+      restrict: 'E',
+      templateUrl: 'main/main.html'
+    };
+  }
 
 })();

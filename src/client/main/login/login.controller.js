@@ -1,32 +1,31 @@
 (() => {
 
-	'use strict'
+  'use strict'
 
-	angular
-		.module('login')
-		.controller('LoginController', LoginController);
+  angular
+    .module('login')
+    .controller('LoginController', LoginController);
 
-	LoginController.$inject = ['$http'];
+  LoginController.$inject = ['loginFactory'];
 
-	function LoginController($http) {
-		/* jshint validthis: true */
-		var vm = this;
+  function LoginController(loginFactory) {
+    /* jshint validthis: true */
+    var vm = this;
 
-		vm.login = login;
+    vm.login = login;
 
-		activate();
+    activate();
 
-		//////////////////////////////////////////////////
+    //////////////////////////////////////////////////
 
-		function activate() {}
+    function activate() {}
 
-		function login(text) {
-			console.log(text);
-			$http.post('/api/login', text).then((response) => {
-				console.log(response);
-			});
-		}
+    function login(text) {
+      loginFactory.login(text).then((response) => {
+        console.log(response);
+      });
+    }
 
-	}
+  }
 
 })();
