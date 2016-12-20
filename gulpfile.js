@@ -1,63 +1,68 @@
 'use strict';
 
 const gulp = require('gulp');
-const plugins = require('gulp-load-plugins')();
+const $ = require('gulp-load-plugins')();
 const config = require('./config');
 
 const paths = config.paths;
 
 // Lint all JavaScript files
-gulp.task('lint', () => {
+gulp.task('lint', [], () => {
   return gulp.src(['./gulpfile.js', './config', paths.server.jsFiles])
-    .pipe(plugins.eslint())
-    .pipe(plugins.eslint.format());
+    .pipe($.eslint())
+    .pipe($.eslint.format());
 });
 
 // wire up all js files
-gulp.task('bower', () => {
+gulp.task('bower', [], () => {
   return gulp.src([paths.client.index])
-    .pipe(plugins.wiredep({
-        ignorePath: '../../',
+    .pipe($.wiredep({
+      ignorePath: '../../'
     }))
     .pipe(gulp.dest(paths.client.base));
 });
 
 gulp.task('inject', ['bower'], () => {
-  var target = gulp.src([paths.client.index]);
-  var sources = gulp.src([paths.client.modules, paths.client.directives, paths.client.controllers, paths.client.factories], {read: false});
+  const target = gulp.src([paths.client.index]);
+  const sources = gulp.src([
+    paths.client.modules,
+    paths.client.directives,
+    paths.client.controllers,
+    paths.client.factories
+  ], { read: false });
 
   return target
-    .pipe(plugins.inject(sources, {ignorePath: 'src/client'}))
+    .pipe($.inject(sources, { ignorePath: 'src/client' }))
     .pipe(gulp.dest('./src/client'));
 });
 
 // Run the unit tests
-gulp.task('unit-test', () => {
+gulp.task('unit-test', [], () => {
   return gulp.src(paths.server.specs)
-    .pipe(plugins.mocha({
+    .pipe($.mocha({
       reporter: 'progress'
     }));
 });
 
 // Initialize the unit test coverage
-gulp.task('pre-unit-test-report', () => {
+gulp.task('pre-unit-test-report', [], () => {
   return gulp.src(paths.server.coverage)
     // FIXME: Coverage is giving 0%
     // Covering files
-    .pipe(plugins.istanbul({
+    .pipe($.istanbul({
       includeUntested: true
     }))
     // Force 'require' to return covered files
-    .pipe(plugins.istanbul.hookRequire());
+    .pipe($.istanbul.hookRequire());
 });
 
 // Report the unit test coverage
 gulp.task('unit-test-report', ['pre-unit-test-report'], () => {
   return gulp.src(paths.server.specs)
     // Unit test the files
-    .pipe(plugins.mocha())
+    .pipe($.mocha())
     // Create the report
-    .pipe(plugins.istanbul.writeReports({
+    .pipe($.istanbul.writeReports({
       dir: './tests/coverage'
     }));
 });
@@ -75,11 +80,11 @@ gulp.task('serve', ['lint', 'inject'], () => {
     tasks: ['lint', 'unit-test']
   };
 
-  return plugins.nodemon(options);
+  return $.nodemon(options);
 });
 
 // List the available gulp tasks
-gulp.task('help', plugins.taskListing);
+gulp.task('help', [], $.taskListing);
 
 // Default task
 gulp.task('default', ['help']);
