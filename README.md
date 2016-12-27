@@ -24,7 +24,9 @@
   - PostgreSQL Database
   - Body-parser middleware
   - CRUD operations
+  - Session
 - Unit testing
+- Static client-side
 
 ### Gulp tasks
 - serve (Nodemon)
@@ -37,7 +39,10 @@
 ### Dependencies
 - body-parser
 - express
+- express-session
 - helmet
+- passport
+- passport-local
 - pg-promise
 
 ### Devdependencies
