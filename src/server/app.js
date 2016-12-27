@@ -13,6 +13,13 @@ const port = process.env.port || 3000;
 const app = express();
 app.use(helmet());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Static files
+app.use('/login', express.static('src/client'));
+
+// Session
+require('./session').session(app);
 
 // Send a response to the index
 app.get('/', helloWorld.helloWorld);
