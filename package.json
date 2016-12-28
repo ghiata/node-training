@@ -10,7 +10,8 @@
     "startDev": "gulp serve"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "helmet": "^3.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
