@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const helloWorld = require('./hello-world');
 
 // Configure the server
 const port = process.env.port || 3000;
@@ -9,9 +10,7 @@ const port = process.env.port || 3000;
 const app = express();
 
 // Send a response to the index
-app.get('/', (req, res) => {
-  res.send('Hello world');
-});
+app.get('/', helloWorld.helloWorld);
 
 // Start server on the specified port and binding host
 app.listen(port, () => {

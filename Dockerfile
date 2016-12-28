@@ -12,4 +12,4 @@ RUN npm install
 COPY . /usr/src/training-app
 
 EXPOSE 3000
-CMD [ "gulp", "serve" ]
+CMD [ "npm", "start" ]

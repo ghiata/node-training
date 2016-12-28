@@ -6,19 +6,24 @@
     "node": "6.x"
   },
   "scripts": {
-    "start": "node ./src/server/app.js"
+    "start": "node ./src/server/app.js",
+    "startDev": "gulp serve"
   },
   "dependencies": {
     "express": "^4.14.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "eslint": "^3.12.1",
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
+    "gulp-istanbul": "^1.1.1",
     "gulp-load-plugins": "^1.4.0",
+    "gulp-mocha": "^3.0.1",
     "gulp-nodemon": "^2.2.1",
-    "gulp-task-listing": "^1.0.1"
+    "gulp-task-listing": "^1.0.1",
+    "sinon": "^1.17.6"
   }
 }
